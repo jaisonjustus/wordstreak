@@ -10,9 +10,16 @@
 				{{character}}
 		</span>
 	</div>
+	
 	<button class="gameboard__button gameboard__button_add" ng-click="addWord()">Add Selected</button>
 	<button class="gameboard__button gameboard__button_clear" ng-click="clearWord()">Clear Selected</button>
-	<ol>
-		<li ng-repeat="word in streak">{{word}}</li>
-	</ol>
+
+	<div class="gameboard__scoreboard">
+		<div class="gameboard__scoreboard-row" ng-repeat="word in streak">
+			<span class="gameboard__clear-word" ng-click="removeWordFromStreak(word)">-</span>
+			<span class="gameboard__score-word">{{word}}</span>
+			<span class="gameboard__score-point"></span>
+		</div>
+	</div>
+		
 </div>

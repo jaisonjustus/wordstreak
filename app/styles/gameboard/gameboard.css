@@ -60,3 +60,32 @@
   background-color: #c0392b;
   float: right;
 }
+
+.gameboard__scoreboard {
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.gameboard__scoreboard-row  {
+  width: 96%;
+  height: auto;
+  padding: 2%;
+  border-bottom: 1px solid #dddddd;
+}
+
+.gameboard__clear-word {
+  font: 20px "WebSymbolsRegular";
+  color: #c0392b;
+  margin-right: 10px;
+}
+
+.gameboard__score-word  {
+  font: 20px "Carrois Gothic SC";
+  font-weight: 400;
+  color: #171817;
+}
+
+.gameboard__score-point {
+
+}
