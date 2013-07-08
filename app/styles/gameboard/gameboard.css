@@ -10,7 +10,10 @@
   height: auto;
   overflow: hidden;
   margin: auto;
-  border: 10px solid #d35400;
+  /*border: 10px solid #d35400;*/
+  border-image: url(../../images/wood-pattern.png);
+  border-image-width: 5px;
+  border-image-repear: repeat-xy; 
   background-color: #ecf0f1;
   padding: 5px;
   border-radius: 5px;
