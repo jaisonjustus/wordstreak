@@ -1,0 +1,62 @@
+.gameboard  {
+  width: 290px;
+  height: auto;
+  overflow: hidden;
+  margin: auto;
+}
+
+.gameboard__board {
+  width: 260px;
+  height: auto;
+  overflow: hidden;
+  margin: auto;
+  border: 10px solid #d35400;
+  background-color: #ecf0f1;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.gameboard__tile  {
+  width: 50px;
+  height: 35px;
+  background-color: #f39c12;
+  float: left;
+  color: white;
+  text-align: center;
+  font: 20px "Carrois Gothic SC";
+  font-weight: 400;
+  margin:1px;
+  padding-top:15px;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0px 0px 1px 0px #bdc3c7;
+}
+
+.gameboard__tile_selected {
+  background-color: #27ae60;
+}
+
+.gameboard__tile_disabled {
+  background-color: #dddddd;
+}
+
+.gameboard__button  {
+  width: auto;
+  border: 0;
+  padding: 5px 10px 5px 10px;
+  margin: 20px 0px 20px 0px;
+  font: 14px "Carrois Gothic SC";
+  font-weight: 400;
+  color: white;
+  border-radius: 3px;
+}
+
+.gameboard__button_add  {
+  background-color: #27ae60;
+  float: left;
+}
+
+.gameboard__button_clear {
+  background-color: #c0392b;
+  float: right;
+}
