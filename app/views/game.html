@@ -1,5 +1,18 @@
 <div class="gameboard">
 	<div class="gameboard__board">
-		{{matrix}}
+		<span class="gameboard__tile" 
+			ng-class="{ gameboard__tile_selected : (character == selected) }"
+			ng-repeat="character in matrix" 
+			ng-click="tileSelected(character, $event)"
+			data-selected-temp="false"
+			data-selected="false"
+			data-selected-word="">
+				{{character}}
+		</span>
 	</div>
+	<button class="gameboard__button gameboard__button_add" ng-click="addWord()">Add Selected</button>
+	<button class="gameboard__button gameboard__button_clear" ng-click="clearWord()">Clear Selected</button>
+	<ol>
+		<li ng-repeat="word in streak">{{word}}</li>
+	</ol>
 </div>
