@@ -7,6 +7,7 @@ angular.module('WordStreak')
 			selector = null;
 
 	$scope.streak = [];
+	$scope.streakSelector = {};
 
 	$scope.currentStreak = [];
 
@@ -32,7 +33,9 @@ angular.module('WordStreak')
 				selector.addClass('gameboard__tile_disabled');
 				selector.addClass('gameboard__tile_selected');
 			});
+			$scope.streakSelector[$scope.currentStreak.join('')] = selectors;
 			$scope.currentStreak = [];
+			selectors = [];
 		}
 	};
 
@@ -42,6 +45,24 @@ angular.module('WordStreak')
 			selector.attr('data-selected-temp', 'false');
 			selector.removeClass('gameboard__tile_selected');
 		});
+		selectors = [];
+	}
+
+	$scope.removeWordFromStreak = function(word)	{
+		var index = $scope.streak.indexOf(word),
+				selectors = $scope.streakSelector[word];
+
+		$scope.streak.splice(index, 1);
+		selectors.forEach(function(selector)	{
+			selector.attr('data-selected-temp', 'false');
+			selector.attr('data-selected', 'false');
+			selector.attr('data-selected-word', '');
+			selector.removeClass('gameboard__tile_disabled');
+			selector.removeClass('gameboard__tile_selected');
+		});
+
+		selectors = null;
+		delete $scope.streakSelector[word];
 	}
 
 });
