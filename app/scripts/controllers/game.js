@@ -20,6 +20,8 @@ angular.module('WordStreak')
 			$scope.currentStreak.push(letter);
 			selector.attr('data-selected-temp', 'true');
 			selector.addClass('gameboard__tile_selected');
+
+			$scope.currentWord = $scope.currentStreak.join('');
 		}
 	};
 
@@ -35,6 +37,7 @@ angular.module('WordStreak')
 			});
 			$scope.streakSelector[$scope.currentStreak.join('')] = selectors;
 			$scope.currentStreak = [];
+			$scope.currentWord = '';
 			selectors = [];
 		}
 	};
