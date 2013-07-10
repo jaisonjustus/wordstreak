@@ -52,7 +52,7 @@
   margin: auto;
   /*border: 10px solid #d35400;*/
   /*background-color: #bdc3c7;*/
-  background-image: url(http://doorswindowsdesign.com/wp-content/uploads/2011/07/Stained-Glass-Windows.jpg); 
+  background-image: url(../../images/stain-glass.png); 
   /*background-image: url(http://fotobg.ru/upload/img1345901978.jpg);*/
   background-size: 312px 312px; 
   padding: 4px;
@@ -223,4 +223,5 @@
   font: 18px "Source Sans Pro";
   font-weight: 400;
   color: #5d5d5d;
+  float: right;
 }
