@@ -8,16 +8,22 @@ angular.module('WordStreak')
 
 	$scope.streak = [];
 	$scope.streakSelector = {};
+	$scope.totalScore = 0;
+	$scope.gameTime = 60;
 
 	$scope.currentStreak = [];
+	$scope.currentPoint = 0;
+
+	$scope.gameStatus = false;
 
 	$scope.matrix = WordMatrix.generate();
 
-	$scope.tileSelected = function(letter, $event)	{
+	$scope.tileSelected = function(tile, $event)	{
 		selector = angular.element($event.target);
 		if(selector.attr('data-selected-temp') !== 'true')	{
 			selectors.push(selector);
-			$scope.currentStreak.push(letter);
+			$scope.currentStreak.push(tile.letter);
+			$scope.currentPoint += parseInt(tile.point);
 			selector.attr('data-selected-temp', 'true');
 			selector.addClass('gameboard__tile_selected');
 
@@ -27,7 +33,24 @@ angular.module('WordStreak')
 
 	$scope.addWord = function()	{
 		if($scope.currentStreak.length > 0)	{
-			$scope.streak.push($scope.currentStreak.join(''));
+			$scope.streak.push({
+				word : $scope.currentStreak.join(''),
+				point : $scope.currentPoint
+			});
+			
+			var temp = $scope.totalScore + $scope.currentPoint;
+			var timer = setInterval(function()	{
+				if($scope.totalScore !== temp)	{
+					$scope.totalScore += 1;
+					$scope.$apply();
+				}else	{
+					clearInterval(timer);
+				}
+			},20);
+
+			// $scope.totalScore += $scope.currentPoint;
+
+
 			selectors.forEach(function(selector)	{
 				selector.attr('data-selected-temp', 'true');
 				selector.attr('data-selected', 'true');
@@ -36,7 +59,8 @@ angular.module('WordStreak')
 				selector.addClass('gameboard__tile_selected');
 			});
 			$scope.streakSelector[$scope.currentStreak.join('')] = selectors;
-			$scope.currentStreak = [];
+			$scope.currentStreak = []; 
+			$scope.currentPoint = 0;
 			$scope.currentWord = '';
 			selectors = [];
 		}
@@ -51,9 +75,20 @@ angular.module('WordStreak')
 		selectors = [];
 	}
 
-	$scope.removeWordFromStreak = function(word)	{
-		var index = $scope.streak.indexOf(word),
+	$scope.removeWordFromStreak = function(set)	{
+		var word = set.word,
+				index = $scope.streak.indexOf(word),
 				selectors = $scope.streakSelector[word];
+
+		var temp = $scope.totalScore - set.point;
+			var timer = setInterval(function()	{
+				if($scope.totalScore !== temp)	{
+					$scope.totalScore -= 1;
+					$scope.$apply();
+				}else	{
+					clearInterval(timer);
+				}
+			},20);
 
 		$scope.streak.splice(index, 1);
 		selectors.forEach(function(selector)	{
@@ -66,6 +101,25 @@ angular.module('WordStreak')
 
 		selectors = null;
 		delete $scope.streakSelector[word];
+	}
+
+	$scope.startGame = function()	{
+		$scope.gameTime = 60;
+		$scope.gameStatus = true;
+		$scope.streak = [];
+		var gameTimer = setInterval(function()	{
+				if($scope.gameTime)	{
+					$scope.gameTime--;
+					$scope.$apply();
+				}else	{
+					$scope.gameStatus = false;
+					$scope.streakSelector = {};
+					$scope.totalScore = 0;
+					$scope.gameTime = 60;
+					$scope.$apply();
+					clearInterval(gameTimer);
+				}
+			},1000);
 	}
 
 });

@@ -5,7 +5,7 @@ angular.module('WordStreak')
 
 	var characterSet = 'ABCDEFGHIJKLNOPQRSTUVWXYZ',
 			wordMatrix = [],
-			matrixSize = 25;
+			matrixSize = 24;
 
 	var generateWordMatrix;
 
@@ -13,7 +13,10 @@ angular.module('WordStreak')
 		wordMatrix = [];
 
 		for(var i = 0; i < matrixSize; i++)	{
-			wordMatrix.push(characterSet[Math.floor(Math.random() * 25)]);
+			wordMatrix.push({
+				letter : characterSet[Math.floor(Math.random() * 25)],
+				point : Math.floor(Math.random() * 10)
+			});
 		}
 
 		return wordMatrix;

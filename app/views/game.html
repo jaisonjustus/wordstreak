@@ -1,24 +1,32 @@
+<div class="gameboard__options">
+	<span class="gameboard__timer" ng-show="gameStatus">{{gameTime}} sec</span>
+	<button class="gameboard__start-button" ng-hide="gameStatus" ng-click="startGame()">Start Game</button>
+</div>
 <div class="gameboard">
 	<div class="gameboard__board">
+		<div class="gameboard__cover" ng-class="{gameboard__cover_slideup : gameStatus, gameboard__cover_slidedown : (gameTime == 0)}">
+		</div>
 		<span class="gameboard__tile" 
-			ng-class="{ gameboard__tile_selected : (character == selected) }"
-			ng-repeat="character in matrix" 
-			ng-click="tileSelected(character, $event)"
+			ng-class="{ gameboard__tile_selected : (tile.letter == selected) }"
+			ng-repeat="tile in matrix" 
+			ng-click="tileSelected(tile, $event)"
 			data-selected-temp="false"
 			data-selected="false"
 			data-selected-word="">
-				{{character}}
+				{{tile.letter}}
+				<span class="gameboard__tile-point">{{tile.point}}</span>
 		</span>
 	</div>
-	
-	<button class="gameboard__button gameboard__button_add" ng-click="addWord()">Add Selected</button>
-	<button class="gameboard__button gameboard__button_clear" ng-click="clearWord()">Clear Selected</button>
 
 	<div class="gameboard__scoreboard">
-		<div class="gameboard__scoreboard-row" ng-repeat="word in streak">
-			<span class="gameboard__clear-word" ng-click="removeWordFromStreak(word)">-</span>
-			<span class="gameboard__score-word">{{word}}</span>
-			<span class="gameboard__score-point"></span>
+		<div class="gameboard__total-score">{{totalScore}}</div>
+		<button class="gameboard__button gameboard__button_add" ng-show="gameStatus" ng-click="addWord()">Add Selected</button>
+		<button class="gameboard__button gameboard__button_clear" ng-show="gameStatus" ng-click="clearWord()">Clear Selected</button>
+		<div class="gameboard__scoreboard-row"
+			ng-repeat="set in streak">
+			<span class="gameboard__clear-word" ng-click="removeWordFromStreak(set)">-</span>
+			<span class="gameboard__score-word">{{set.word}}</span>
+			<span class="gameboard__score-point">{{set.point}} points</span>
 		</div>
 	</div>
 		

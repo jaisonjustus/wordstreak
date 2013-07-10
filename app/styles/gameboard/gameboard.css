@@ -1,22 +1,107 @@
+.start_button {
+
+}
+
 .gameboard  {
-  width: 290px;
+  width: 320px;
   height: auto;
   overflow: hidden;
+  margin: 10px auto;
+  background-color: white;
+  box-shadow: 0px 0px 3px 1px #95a5a6;
+  border-radius: 3px;
+}
+
+.gameboard__options  {
+  width: 320px;
+  height: auto;
+  min-height: 50px;
+  overflow: hidden;
   margin: auto;
+  margin-top:30px;
+  text-align: center;
+  /*background-color: white;
+  box-shadow: 0px 0px 3px 1px #95a5a6;
+  border-radius: 3px;*/
+}
+
+.gameboard__timer {
+  font:35px "Source Sans Pro";
+  font-weight: 500px;
+  color:#3d3d3d;
+}
+
+.gameboard__start-button  {
+  width: auto;
+  height: auto;
+  padding-right: 5px 10px 5px 10px;
+  background-color: #2ecc71;
+  border:0;
+  font:25px "Source Sans Pro";
+  color:white;
+  margin: auto;
+  border-radius: 3px;
+
 }
 
 .gameboard__board {
-  width: 260px;
-  height: auto;
+  width: 312px;
+  height: 250px;
   overflow: hidden;
+  position: relative;
   margin: auto;
   /*border: 10px solid #d35400;*/
-  border-image: url(../../images/wood-pattern.png);
-  border-image-width: 5px;
-  border-image-repear: repeat-xy; 
-  background-color: #ecf0f1;
-  padding: 5px;
-  border-radius: 5px;
+  /*background-color: #bdc3c7;*/
+  background-image: url(http://doorswindowsdesign.com/wp-content/uploads/2011/07/Stained-Glass-Windows.jpg); 
+  /*background-image: url(http://fotobg.ru/upload/img1345901978.jpg);*/
+  background-size: 312px 312px; 
+  padding: 4px;
+  /*border-radius: 5px;*/
+}
+
+.gameboard__cover {
+  width: 312px;
+  height: 250px;
+  padding: 4px;
+  background-color: white;
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 1;
+}
+
+.gameboard__cover_slideup  {
+  -webkit-animation-duration: 0.8s;
+  -webkit-animation-name: slide-up;
+  -webkit-animation-iteration-count : 1;
+  -webkit-animation-fill-mode : forwards;
+}
+
+@-webkit-keyframes slide-up {
+  0% {
+    top:0px;
+  }
+
+  100% {
+    top:-260px;
+  }
+}
+
+.gameboard__cover_slidedown  {
+  -webkit-animation-duration: 0.8s;
+  -webkit-animation-name: slidedown;
+  -webkit-animation-iteration-count : 1;
+  -webkit-animation-fill-mode : forwards;
+}
+
+@-webkit-keyframes slidedown {
+  0% {
+    top:-260px;
+  }
+
+  100% {
+    top:0px;
+  }
 }
 
 .gameboard__tile  {
@@ -26,7 +111,7 @@
   float: left;
   color: white;
   text-align: center;
-  font: 20px "Carrois Gothic SC";
+  font: 20px "Source Sans Pro";
   font-weight: 400;
   margin:1px;
   padding-top:15px;
@@ -35,12 +120,23 @@
   box-shadow: 0px 0px 1px 0px #bdc3c7;
 }
 
+.gameboard__tile-point  {
+  width: auto;
+  height: auto;
+  font: 10px "Source Sans Pro";
+  font-weight: 400;
+  position: absolute;
+  bottom: 0px;
+  right: 2px;
+}
+
 .gameboard__tile_selected {
   background-color: #27ae60;
 }
 
 .gameboard__tile_disabled {
   background-color: #dddddd;
+  opacity: 0.9;
 }
 
 .gameboard__button  {
@@ -48,7 +144,7 @@
   border: 0;
   padding: 5px 10px 5px 10px;
   margin: 20px 0px 20px 0px;
-  font: 14px "Carrois Gothic SC";
+  font: 14px "Source Sans Pro";
   font-weight: 400;
   color: white;
   border-radius: 3px;
@@ -64,17 +160,49 @@
   float: right;
 }
 
+
+
 .gameboard__scoreboard {
-  width: 100%;
+  width: 94%;
   height: auto;
   float: left;
+  padding: 3%;
+  padding-top: 40px;
+  position: relative;
+  min-height: 30px;
+}
+
+.gameboard__total-score {
+  width: 70px;
+  height: 50px;
+  background-color: #ecf0f1;
+  box-shadow:inset 0px 0px 3px 0px #bdc3c7;
+  border-radius: 70px;
+  position: absolute;
+  top: -35px;
+  left: 121px;
+  padding-top:20px;
+  font:25px "Source Sans Pro";
+  font-weight: 500;
+  text-align: center;
+  color:#5d5d5d;
+  z-index: 2;
 }
 
 .gameboard__scoreboard-row  {
-  width: 96%;
+  width: 95%;
   height: auto;
   padding: 2%;
-  border-bottom: 1px solid #dddddd;
+  border-left: 5px solid #dddddd;
+  clear: both;
+  background-color: #ecf0f1;
+  border-radius: 3px;
+  float: left;
+  margin-bottom:1px;
+}
+
+.gameboard__scoreboard-row_no-border  {
+  border-bottom: 0px !important;
 }
 
 .gameboard__clear-word {
@@ -84,11 +212,15 @@
 }
 
 .gameboard__score-word  {
-  font: 20px "Carrois Gothic SC";
+  width: 100px;
+  font: 20px "Source Sans Pro";
   font-weight: 400;
-  color: #171817;
+  color: #5d5d5d;
+  padding-right: 20px;
 }
 
 .gameboard__score-point {
-
+  font: 18px "Source Sans Pro";
+  font-weight: 400;
+  color: #5d5d5d;
 }
