@@ -29,7 +29,7 @@ angular.module('WordStreak')
 
 	$scope.addSelectedWord = function()	{
 		var updatedPoint = 0,
-				totalScoreUpdater = null,
+				totalScoreIncrementor = null,
 				selectors = [];
 
 		if(WordBuilder.getLetters().length > 0)	{
@@ -39,12 +39,12 @@ angular.module('WordStreak')
 			selectors = WordBuilder.getSelectors();
 
 			/* Timer to animate the shift in the total point. */
-			totalScoreUpdater = setInterval(function()	{
+			totalScoreIncrementor = setInterval(function()	{
 				if($scope.totalScore !== updatedPoint)	{
 					$scope.totalScore += 1;
 					$scope.$apply();
 				}else	{
-					clearInterval(totalScoreUpdater);
+					clearInterval(totalScoreIncrementor);
 				}
 			},20);
 
@@ -73,33 +73,43 @@ angular.module('WordStreak')
 		WordBuilder.flush();
 	}
 
-	$scope.removeWord = function(set)	{
-		var word = set.word,
-				index = $scope.words.indexOf(word),
-				selectors = $scope.streakSelector[word];
+	$scope.removeWord = function(item)	{
+		var word = item.word,
+				point = item.point,
+				wordIndex = -1,
+				wordObject = null,
+				updatedPoint = 0,
+				totalScoreDecrementor = null;
 
-		var temp = $scope.totalScore - set.point;
-			var timer = setInterval(function()	{
-				if($scope.totalScore !== temp)	{
-					$scope.totalScore -= 1;
-					$scope.$apply();
-				}else	{
-					clearInterval(timer);
-				}
-			},20);
+		$scope.words.forEach(function(item, index)	{
+			if(item.word === word)	{
+				wordObject = item;
+				wordIndex = index;
+			}
+		});
 
-		$scope.words.splice(index, 1);
-		selectors.forEach(function(selector)	{
+		$scope.words.splice(wordIndex, 1);
+
+		updatedPoint = $scope.totalScore - point;
+		
+		totalScoreDecrementor = setInterval(function()	{
+			if($scope.totalScore !== updatedPoint)	{
+				$scope.totalScore -= 1;
+				$scope.$apply();
+			}else	{
+				clearInterval(totalScoreDecrementor);
+			}
+		},20);
+
+		
+		wordObject.selectors.forEach(function(selector)	{
 			selector.attr('data-selected-temp', 'false');
 			selector.attr('data-selected', 'false');
 			selector.attr('data-selected-word', '');
 			selector.removeClass('gameboard__tile_disabled');
 			selector.removeClass('gameboard__tile_selected');
 		});
-
-		selectors = null;
-		delete $scope.streakSelector[word];
-	}
+	};
 
 	$scope.startGame = function()	{
 		$scope.gameTime = 60;
