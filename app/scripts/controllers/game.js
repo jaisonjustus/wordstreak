@@ -27,7 +27,7 @@ angular.module('WordStreak')
 		}
 	};
 
-	$scope.addWord = function()	{
+	$scope.addSelectedWord = function()	{
 		var updatedPoint = 0,
 				totalScoreUpdater = null,
 				selectors = [];
@@ -62,7 +62,7 @@ angular.module('WordStreak')
 		}
 	};
 
-	$scope.clearWord = function()	{
+	$scope.clearSelectedWord = function()	{
 		var selectors = WordBuilder.getSelectors();
 
 		selectors.forEach(function(selector)	{
@@ -73,7 +73,7 @@ angular.module('WordStreak')
 		WordBuilder.flush();
 	}
 
-	$scope.removeWordFromStreak = function(set)	{
+	$scope.removeWord = function(set)	{
 		var word = set.word,
 				index = $scope.words.indexOf(word),
 				selectors = $scope.streakSelector[word];

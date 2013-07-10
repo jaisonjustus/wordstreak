@@ -20,11 +20,11 @@
 
 	<div class="gameboard__scoreboard">
 		<div class="gameboard__total-score">{{totalScore}}</div>
-		<button class="gameboard__button gameboard__button_add" ng-show="gameStatus" ng-click="addWord()">Add Selected</button>
-		<button class="gameboard__button gameboard__button_clear" ng-show="gameStatus" ng-click="clearWord()">Clear Selected</button>
+		<button class="gameboard__button gameboard__button_add" ng-show="gameStatus" ng-click="addSelectedWord()">Add Selected</button>
+		<button class="gameboard__button gameboard__button_clear" ng-show="gameStatus" ng-click="clearSelectedWord()">Clear Selected</button>
 		<div class="gameboard__scoreboard-row"
 			ng-repeat="item in words">
-			<span class="gameboard__clear-word" ng-click="removeWordFromStreak(item)">-</span>
+			<span class="gameboard__clear-word" ng-click="removeWord(item)">-</span>
 			<span class="gameboard__score-word">{{item.word}}</span>
 			<span class="gameboard__score-point">{{item.point}} points</span>
 		</div>
