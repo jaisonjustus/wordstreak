@@ -63,12 +63,14 @@ angular.module('WordStreak')
 	};
 
 	$scope.clearWord = function()	{
-		$scope.currentStreak = [];
+		var selectors = WordBuilder.getSelectors();
+
 		selectors.forEach(function(selector)	{
 			selector.attr('data-selected-temp', 'false');
 			selector.removeClass('gameboard__tile_selected');
 		});
-		selectors = [];
+
+		WordBuilder.flush();
 	}
 
 	$scope.removeWordFromStreak = function(set)	{
