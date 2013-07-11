@@ -15,6 +15,7 @@ h1, p	{
 	margin-top: 50px;
 	box-shadow: 0px 0px 2px 0px #95a5a6;
 	overflow: hidden;
+	border-radius: 3px;
 }
 
 .login__header	{
@@ -51,6 +52,7 @@ h1, p	{
 	border: 0;
 	background-color: #eeeeee;
 	box-shadow: inset 0px 0px 2px 0px #dddddd;
+	border-radius: 3px;
 }
 
 .login__button	{
