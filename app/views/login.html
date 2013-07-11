@@ -1,7 +1,11 @@
 <div class="login">
 	<h1 class="login__header">Login to play WordStreak</h1>
-	<p class="login__signup-message">new player<span class="login__signup">Sign Up here</span></p>
-	<input type="text" class="login__username" placeholder="Email"/>
-	<input type="password" class="login__password" placeholder="Password"/>
-	<button class="login__button">Login</button>
+	<p class="login__signup-message">
+		new player<span class="login__signup">Sign Up here</span>
+	</p>
+
+	<input type="text" ng-model="username" class="login__username" placeholder="Email"/>
+	<input type="password" ng-model="password" class="login__password" placeholder="Password"/>
+
+	<button class="login__button" ng-click="login()">Login</button>
 </div>

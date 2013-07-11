@@ -4,8 +4,8 @@ angular.module('WordStreak', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeController'
+        templateUrl: 'views/login.html',
+        controller: 'LoginController'
       })
       .when('/game', {
         templateUrl: 'views/game.html',
