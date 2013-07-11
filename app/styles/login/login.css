@@ -1,0 +1,67 @@
+h1, p	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+
+.login	{
+	width: 300px;
+	height: auto;
+	padding: 20px;
+	padding-bottom: 30px;
+	background-color: white;
+	margin: auto;
+	margin-top: 50px;
+	box-shadow: 0px 0px 2px 0px #95a5a6;
+	overflow: hidden;
+}
+
+.login__header	{
+	font:20px "Source Sans Pro";
+	font-weight: 400;
+	color: #171817;
+	float: left;
+}
+
+.login__signup-message	{
+	font:15px "Source Sans Pro";
+	font-weight: 400;
+	color: #171817;	
+	margin: 5px 0px 30px 0px;
+	float: left;
+}
+
+.login__signup	{
+	font:15px "Source Sans Pro";
+	font-weight: 400px;
+	color: #171817;	
+	margin-left: 5px;
+	cursor: pointer;
+	color: #3498db;
+}
+
+.login__username, .login__password	{
+	width: 96%;
+	padding: 2%;
+	font:15px "Source Sans Pro";
+	font-weight: 400px;
+	color: #3d3d3d;
+	margin-bottom: 10px;
+	border: 0;
+	background-color: #eeeeee;
+	box-shadow: inset 0px 0px 2px 0px #dddddd;
+}
+
+.login__button	{
+	width: 100px;
+	height: auto;
+	padding: 7px;
+	background-color: #3498db;
+	border: 0;
+	border-radius: 3px;
+	font: 15px "Source Sans Pro";
+	font-weight: 400px;
+	color: white;
+	float: right;
+}
