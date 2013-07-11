@@ -112,22 +112,25 @@ angular.module('WordStreak')
 	};
 
 	$scope.startGame = function()	{
-		$scope.gameTime = 60;
+		resetGameParams();
 		$scope.gameStatus = true;
-		$scope.streak = [];
 		var gameTimer = setInterval(function()	{
 				if($scope.gameTime)	{
 					$scope.gameTime--;
 					$scope.$apply();
 				}else	{
 					$scope.gameStatus = false;
-					$scope.streakSelector = {};
-					$scope.totalScore = 0;
-					$scope.gameTime = 60;
 					$scope.$apply();
 					clearInterval(gameTimer);
 				}
 			},1000);
+	};
+
+	var resetGameParams = function()	{
+		$scope.gameTime = 60;
+		$scope.words = [];
+		$scope.totalScore = 0
+		$scope.matrix = WordMatrix.generate();
 	}
 
 });
